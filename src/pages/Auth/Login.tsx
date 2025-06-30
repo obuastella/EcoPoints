@@ -9,9 +9,10 @@ import {
   Recycle,
   Leaf,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
@@ -32,6 +33,7 @@ const Login = () => {
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 2000));
     setIsLoading(false);
+    navigate("/dashboard");
   };
 
   const containerVariants = {
