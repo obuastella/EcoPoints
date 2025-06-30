@@ -10,16 +10,16 @@ import {
   Star,
   TrendingUp,
   ChevronRight,
-  Users,
   Target,
   Calendar,
   Medal,
   Zap,
-  Bell,
+  LogOut,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [user] = useState({
     name: "Stella Olatunji",
     points: 2850,
@@ -129,14 +129,14 @@ const Dashboard = () => {
     },
     {
       title: "Report Illegal Dump",
-      path: "/upload",
+      path: "/report",
       icon: AlertTriangle,
       color: "from-orange-500 to-red-500",
       bgColor: "bg-orange-50",
     },
     {
       title: "View Rewards",
-      path: "/upload",
+      path: "/rewards",
       icon: Gift,
       color: "from-purple-500 to-pink-500",
       bgColor: "bg-purple-50",
@@ -148,7 +148,9 @@ const Dashboard = () => {
     { icon: Leaf, color: "from-emerald-400 to-teal-400", delay: 1 },
     { icon: Star, color: "from-teal-400 to-cyan-400", delay: 2 },
   ];
-
+  const handleLogout = () => {
+    navigate("/");
+  };
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 relative overflow-hidden">
       {/* Animated Background Elements */}
@@ -192,10 +194,9 @@ const Dashboard = () => {
               </h1>
               <p className="text-gray-600">Ready to make a difference today?</p>
             </div>
-            <motion.div className="relative" whileHover={{ scale: 1.05 }}>
-              <Bell className="w-6 h-6 text-gray-600 cursor-pointer" />
-              <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
-            </motion.div>
+            <button onClick={handleLogout} className="relative">
+              <LogOut className="w-6 h-6 text-gray-600 cursor-pointer" />
+            </button>
           </motion.div>
 
           {/* Points Balance Card */}
@@ -334,8 +335,16 @@ const Dashboard = () => {
               className="bg-white/80 backdrop-blur-lg rounded-3xl p-6 shadow-xl border border-white/20"
             >
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-bold text-gray-800">Leaderboard</h3>
-                <Users className="w-5 h-5 text-green-500" />
+                <div className="cursor-pointer text-xl font-bold text-gray-800">
+                  Leaderboard
+                </div>
+                {/* <Users className="w-5 h-5 text-green-500" /> */}
+                <Link
+                  to="/leaderboard"
+                  className=" cursor-pointer text-sm hover:underline"
+                >
+                  View more
+                </Link>
               </div>
               <div className="space-y-3">
                 {leaderboard.map((user) => (
