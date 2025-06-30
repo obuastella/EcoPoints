@@ -17,6 +17,7 @@ import {
   Zap,
   Bell,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const [user] = useState({
@@ -121,18 +122,21 @@ const Dashboard = () => {
   const quickLinks = [
     {
       title: "Upload Cleanup",
+      path: "/upload",
       icon: Upload,
       color: "from-green-500 to-emerald-500",
       bgColor: "bg-green-50",
     },
     {
       title: "Report Illegal Dump",
+      path: "/upload",
       icon: AlertTriangle,
       color: "from-orange-500 to-red-500",
       bgColor: "bg-orange-50",
     },
     {
       title: "View Rewards",
+      path: "/upload",
       icon: Gift,
       color: "from-purple-500 to-pink-500",
       bgColor: "bg-purple-50",
@@ -245,7 +249,10 @@ const Dashboard = () => {
                 whileHover={{ scale: 1.02, y: -5 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <div className="flex items-center justify-between">
+                <Link
+                  to={link.path}
+                  className="flex items-center justify-between"
+                >
                   <div>
                     <div
                       className={`w-12 h-12 bg-gradient-to-r ${link.color} rounded-xl flex items-center justify-center mb-3`}
@@ -257,7 +264,7 @@ const Dashboard = () => {
                     </h3>
                   </div>
                   <ChevronRight className="w-5 h-5 text-gray-400" />
-                </div>
+                </Link>
               </motion.div>
             ))}
           </motion.div>
